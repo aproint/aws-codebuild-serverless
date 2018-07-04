@@ -1,6 +1,7 @@
 # aws-codebuild-serverless
+You can use this Docker image in AWS CodeBuild when you need to package and deploy [Serverless](https://serverless.com/) framework application.
 
-This Docker image is intended for use inside AWS CodeBuild when you need to package and deploy [Serverless](https://serverless.com/) framework application.
+Your code will be "compiled" against the correct version of OS and Node. This is especially important for native addons.
 
 It targets directly Lambda execution environment as described [in the documentation](https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html):
 
@@ -14,5 +15,16 @@ It targets directly Lambda execution environment as described [in the documentat
 >AWS Lambda supports the following runtime versions:
 >
 > * Node.js – v8.10, v6.10 or v4.3
+> ...
 
-Using this Docker image means your code will be "compiled" against the correct version of OS and Node. This is especially important for native addons.
+## Docker base image
+We use `amazonlinux:2017.03.1.20170812` which reflects AWS Lambda execution environment.
+
+## What is installed?
+* `gcc-c++` and `make` for native addon compilation
+* `node` according to the Docker image tag
+* the latest `yarn`
+* `serverless` according to the Docker image tag
+
+## How is it built?
+Dockerfile build is parametrized instead of the usual folder/branch/tag mumbo jumbo. `release.sh` builds all the combinations and pushes them to Docker Hub.
