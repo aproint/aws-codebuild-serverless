@@ -16,8 +16,8 @@ do
             --build-arg SERVERLESS_VERSION=$serverless_version \
             -f $DOCKERFILE_PATH \
             -t $IMAGE_NAME \
-            -t $DOCKER_REPO:$tag_all
-            -t $DOCKER_REPO:$tag_minor
+            -t $DOCKER_REPO:$tag_all \
+            -t $DOCKER_REPO:$tag_minor \
             .
     done
 done
