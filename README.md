@@ -26,5 +26,10 @@ We use `amazonlinux:2017.03.1.20170812` which reflects AWS Lambda execution envi
 * the latest `yarn`
 * `serverless` according to the Docker image tag
 
+The `extra` image contains on top of that:
+* `git` (2.14.4)
+* `unzip`
+* the latest `aws-cli` at the time of build
+
 ## How is it built?
 Dockerfile build is parametrized instead of the usual folder/branch/tag mumbo jumbo. `release.sh` builds all the combinations and pushes them to Docker Hub.
