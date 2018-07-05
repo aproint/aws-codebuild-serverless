@@ -26,9 +26,10 @@ We use `amazonlinux:2017.03.1.20170812` which reflects AWS Lambda execution envi
 * the latest `yarn`
 * `serverless` according to the Docker image tag
 
-The `extra` image contains on top of that:
+The `extra` image contains a few convenient utilities including AWS CLI on top of that:
 * `git` (2.14.4)
-* `unzip`
+* `unzip` (6.0)
+* `jq` (1.5)
 * the latest `aws-cli` at the time of build
 
 ## How is it built?

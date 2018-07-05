@@ -27,15 +27,15 @@ do
             docker push $IMAGE_NAME:$tag_minor
         fi
         #skip if the extra image exists
-        #if [[ "$(docker images -q $IMAGE_NAME:$tag_all-extra 2> /dev/null)" == "" ]]; then
-        #    docker build \
-        #        --build-arg IMAGE_VERSION=$tag_all \
-        #        -t $IMAGE_NAME:$tag_all-extra \
-         #       -t $IMAGE_NAME:$tag_minor-extra \
-        #        -f Dockerfile-extra \
-        #        .
+        if [[ "$(docker images -q $IMAGE_NAME:$tag_all-extra 2> /dev/null)" == "" ]]; then
+            docker build \
+                --build-arg IMAGE_VERSION=$tag_all \
+                -t $IMAGE_NAME:$tag_all-extra \
+                -t $IMAGE_NAME:$tag_minor-extra \
+                -f Dockerfile-extra \
+                .
             docker push $IMAGE_NAME:$tag_all-extra
             docker push $IMAGE_NAME:$tag_minor-extra
-        #fi
+        fi
     done
 done
